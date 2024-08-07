@@ -1,7 +1,7 @@
 import 'package:bloc_clean_architecture/bloc/login/login_bloc.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-
+import '../../main.dart';
 import 'widgets/widgets.dart';
 
 class LoginPage extends StatefulWidget {
@@ -20,7 +20,7 @@ class _LoginPageState extends State<LoginPage> {
   @override
   void initState() {
     super.initState();
-    _loginBlocs = LoginBloc();
+    _loginBlocs = LoginBloc(loginRepository: getItt);
   }
 
   @override

@@ -1,6 +1,6 @@
 import 'dart:async';
 
-import 'package:bloc_clean_architecture/services/splash_services.dart';
+import 'package:bloc_clean_architecture/services/splash/splash_services.dart';
 import 'package:flutter/material.dart';
 
 class SplashPage extends StatefulWidget {
