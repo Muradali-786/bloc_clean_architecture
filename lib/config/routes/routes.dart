@@ -1,5 +1,6 @@
 
 import 'package:bloc_clean_architecture/config/routes/route_name.dart';
+import 'package:bloc_clean_architecture/view/login/login_page.dart';
 import 'package:flutter/material.dart';
 import '../../view/view.dart';
 
@@ -12,6 +13,8 @@ class Routes {
         return MaterialPageRoute(builder: (_) => const SplashPage());
       case RouteName.homePage:
         return MaterialPageRoute(builder: (_) => const HomePage());
+      case RouteName.login:
+        return MaterialPageRoute(builder: (_) => const LoginPage());
 
       default:
         return MaterialPageRoute(builder: (_) {

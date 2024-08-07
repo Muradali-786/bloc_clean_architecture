@@ -1,6 +1,6 @@
 import 'dart:async';
 
-import 'package:bloc_clean_architecture/config/routes/route_name.dart';
+import 'package:bloc_clean_architecture/services/splash_services.dart';
 import 'package:flutter/material.dart';
 
 class SplashPage extends StatefulWidget {
@@ -11,13 +11,11 @@ class SplashPage extends StatefulWidget {
 }
 
 class _SplashPageState extends State<SplashPage> {
-  @override
+@override
   void initState() {
     // TODO: implement initState
     super.initState();
-    Timer(const Duration(seconds: 2), (){
-      Navigator.pushNamed(context, RouteName.homePage);
-    });
+    SplashServices().isLogin(context);
   }
 
   @override
