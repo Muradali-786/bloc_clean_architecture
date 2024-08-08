@@ -1,5 +1,8 @@
+import 'dart:convert';
+
 import 'package:bloc/bloc.dart';
 import 'package:bloc_clean_architecture/respository/auth/login_repository.dart';
+import 'package:bloc_clean_architecture/services/session/session_manager.dart';
 import 'package:bloc_clean_architecture/utils/enums.dart';
 import 'package:equatable/equatable.dart';
 
@@ -27,10 +30,16 @@ class LoginBloc extends Bloc<LoginEvents, LoginState> {
     emit(state.copyWith(apiStatus: ApiStatus.loading));
     Map data = {"email": state.email, "password": state.password};
 
-    await loginRepository.loginRepository(data).then((value) {
+    await loginRepository.loginRepository(data).then((value)async {
+
+
       if (value.error.isNotEmpty) {
         emit(state.copyWith(message: 'error', apiStatus: ApiStatus.error));
       } else {
+        await SessionManager().saveUserInPreference(value);
+        await SessionManager().getUserFromPreference();
+
+
         emit(state.copyWith(
             message: 'Login successful', apiStatus: ApiStatus.success));
       }
