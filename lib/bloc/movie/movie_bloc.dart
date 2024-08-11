@@ -15,8 +15,8 @@ class MovieBloc extends Bloc<MovieEvent, MovieState> {
     on<FetchMovie>(movieApiResponse);
   }
 
-  void movieApiResponse(FetchMovie event, Emitter<MovieState> emit) {
-    movieRepository.movieRepository().then((value) {
+  void movieApiResponse(FetchMovie event, Emitter<MovieState> emit)async {
+   await movieRepository.movieRepository().then((value) {
       emit(state.copyWith(apiResponse: ApiResponse.complete(value)));
     }).onError((error, stackTrace) {
       emit(state.copyWith(apiResponse: ApiResponse.error(error.toString())));

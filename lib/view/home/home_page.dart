@@ -70,11 +70,14 @@ class _HomePageState extends State<HomePage> {
                         itemCount: movieList.tvShow.length,
                         itemBuilder: (context, index) {
                           final tvShow = movieList.tvShow[index];
+                          print('dekh url de value ha');
+                          print(tvShow.imageThumbnailPath.toString());
                           return Card(
                             child: ListTile(
                               leading: Image(
-                                  image: NetworkImage(
-                                      tvShow.imageThumbnailPath.toString())),
+                                height: 20,
+                                  width: 20,
+                                  image: NetworkImage("${tvShow.imageThumbnailPath}")),
                               title: Text(
                                   tvShow.name.toString()), // Title of the movie
                               subtitle: Text(tvShow.network

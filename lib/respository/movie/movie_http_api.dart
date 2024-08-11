@@ -7,10 +7,7 @@ class MovieHttpApi implements MovieRepository {
   final _api = NetworkApiServices();
   @override
   Future<MovieModel> movieRepository() async {
-    final response = await _api.getApi(AppUrl.movieUrl).timeout(
-          const Duration(seconds: 30),
-        );
-
+    final response = await _api.getApi(AppUrl.movieUrl);
     return MovieModel.fromJson(response);
   }
 }

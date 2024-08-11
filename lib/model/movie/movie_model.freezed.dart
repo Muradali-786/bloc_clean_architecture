@@ -247,6 +247,7 @@ mixin _$TvShows {
       throw _privateConstructorUsedError; // End date of the TV show
   String get network =>
       throw _privateConstructorUsedError; // Network of the TV show
+  @JsonKey(name: 'image_thumbnail_path')
   String get imageThumbnailPath =>
       throw _privateConstructorUsedError; // Image thumbnail path of the TV show
   String get status => throw _privateConstructorUsedError;
@@ -266,7 +267,7 @@ abstract class $TvShowsCopyWith<$Res> {
       String permalink,
       String endDate,
       String network,
-      String imageThumbnailPath,
+      @JsonKey(name: 'image_thumbnail_path') String imageThumbnailPath,
       String status});
 }
 
@@ -331,7 +332,7 @@ abstract class _$$TvShowsImplCopyWith<$Res> implements $TvShowsCopyWith<$Res> {
       String permalink,
       String endDate,
       String network,
-      String imageThumbnailPath,
+      @JsonKey(name: 'image_thumbnail_path') String imageThumbnailPath,
       String status});
 }
 
@@ -390,7 +391,7 @@ class _$TvShowsImpl implements _TvShows {
       this.permalink = '',
       this.endDate = '',
       this.network = '',
-      this.imageThumbnailPath = '',
+      @JsonKey(name: 'image_thumbnail_path') this.imageThumbnailPath = '',
       this.status = ''});
 
   factory _$TvShowsImpl.fromJson(Map<String, dynamic> json) =>
@@ -413,7 +414,7 @@ class _$TvShowsImpl implements _TvShows {
   final String network;
 // Network of the TV show
   @override
-  @JsonKey()
+  @JsonKey(name: 'image_thumbnail_path')
   final String imageThumbnailPath;
 // Image thumbnail path of the TV show
   @override
@@ -465,7 +466,7 @@ abstract class _TvShows implements TvShows {
       final String permalink,
       final String endDate,
       final String network,
-      final String imageThumbnailPath,
+      @JsonKey(name: 'image_thumbnail_path') final String imageThumbnailPath,
       final String status}) = _$TvShowsImpl;
 
   factory _TvShows.fromJson(Map<String, dynamic> json) = _$TvShowsImpl.fromJson;
@@ -480,6 +481,7 @@ abstract class _TvShows implements TvShows {
   @override // End date of the TV show
   String get network;
   @override // Network of the TV show
+  @JsonKey(name: 'image_thumbnail_path')
   String get imageThumbnailPath;
   @override // Image thumbnail path of the TV show
   String get status;

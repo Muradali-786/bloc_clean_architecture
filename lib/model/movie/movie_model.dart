@@ -18,7 +18,7 @@ class MovieModel with _$MovieModel {
       _$MovieModelFromJson(json); // JSON deserialization method
 }
 
-/// Freezed class representing a TV show.
+/// Freezed class representing a TV show
 @freezed
 class TvShows with _$TvShows {
   /// Factory constructor for creating a [TvShows] instance.
@@ -27,7 +27,7 @@ class TvShows with _$TvShows {
     @Default('') String permalink, // Permalink of the TV show
     @Default('') String endDate, // End date of the TV show
     @Default('') String network, // Network of the TV show
-    @Default('') String imageThumbnailPath, // Image thumbnail path of the TV show
+    @JsonKey(name: 'image_thumbnail_path') @Default('') String imageThumbnailPath, // Image thumbnail path of the TV show
     @Default('') String status, // Status of the TV show
   }) = _TvShows; // Constructor for the freezed class
 
