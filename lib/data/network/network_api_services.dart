@@ -13,7 +13,7 @@ class NetworkApiServices implements BaseApiServices {
 
     try {
       final response =
-          await http.get(Uri.parse(url)).timeout(const Duration(seconds: 30));
+          await http.get(Uri.parse(url)).timeout(const Duration(seconds: 40));
       jsonResponse = returnResponse(response);
 
       if (response.statusCode == 200) {}

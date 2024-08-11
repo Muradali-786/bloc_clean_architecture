@@ -2,9 +2,10 @@ import 'package:bloc_clean_architecture/bloc/movie/movie_bloc.dart';
 import 'package:bloc_clean_architecture/config/routes/route_name.dart';
 import 'package:bloc_clean_architecture/main.dart';
 import 'package:bloc_clean_architecture/services/storage/local_storage.dart';
+import 'package:bloc_clean_architecture/view/home/widget/carousal_widget.dart';
+import 'package:bloc_clean_architecture/view/home/widget/movie_error_widget.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-
 import '../../data/response/status.dart';
 
 class HomePage extends StatefulWidget {
@@ -19,7 +20,6 @@ class _HomePageState extends State<HomePage> {
 
   @override
   void initState() {
-    // TODO: implement initState
     super.initState();
     movieBloc = MovieBloc(movieRepository: getItt1);
   }
@@ -30,7 +30,9 @@ class _HomePageState extends State<HomePage> {
       create: (_) => movieBloc,
       child: Scaffold(
         appBar: AppBar(
+          centerTitle: true,
           title: const Text("Bloc clean architecture"),
+
           actions: [
             IconButton(
               onPressed: () async {
@@ -58,35 +60,47 @@ class _HomePageState extends State<HomePage> {
                   case Status.loading:
                     return const Center(child: CircularProgressIndicator());
                   case Status.error:
-                    return const Text('ERROR');
+                    return const MoviesErrorWidget();
                   case Status.completed:
                     if (state.movieList.data == null) {
                       // Widget for displaying no data found message
-                      return Text('no data found');
+                      return const Text('no data found');
                     }
                     final movieList = state.movieList.data!;
 
-                    return ListView.builder(
-                        itemCount: movieList.tvShow.length,
-                        itemBuilder: (context, index) {
-                          final tvShow = movieList.tvShow[index];
-                          print('dekh url de value ha');
-                          print(tvShow.imageThumbnailPath.toString());
-                          return Card(
-                            child: ListTile(
-                              leading: Image(
-                                height: 20,
-                                  width: 20,
-                                  image: NetworkImage("${tvShow.imageThumbnailPath}")),
-                              title: Text(
-                                  tvShow.name.toString()), // Title of the movie
-                              subtitle: Text(tvShow.network
-                                  .toString()), // Network of the movie
-                              trailing: Text(tvShow.status
-                                  .toString()), // Status of the movie
-                            ),
-                          );
-                        });
+                    return CarousalWidget(movieModel: movieList );
+
+                    // return ListView.builder(
+                    //   itemCount: movieList.tvShow.length,
+                    //   itemBuilder: (context, index) {
+                    //     final tvShow = movieList.tvShow[index];
+                    //
+                    //     return Card(
+                    //       child: ListTile(
+                    //         leading: Container(
+                    //             height: 50,
+                    //             width: 50,
+                    //             decoration:
+                    //                 const BoxDecoration(shape: BoxShape.circle),
+                    //             child: Image(
+                    //               image: NetworkImage(
+                    //                 tvShow.imageThumbnailPath.toString(),
+                    //               ),
+                    //             )),
+                    //         title: Text(
+                    //           tvShow.name.toString(),
+                    //         ), // Title of the movie
+                    //         subtitle: Text(
+                    //           tvShow.network.toString(),
+                    //         ), // Network of the movie
+                    //         trailing: Text(
+                    //           tvShow.status.toString(),
+                    //         ), // Status of the movie
+                    //       ),
+                    //     );
+                    //   },
+                    // );
+
                   default:
                     return const SizedBox();
                 }
