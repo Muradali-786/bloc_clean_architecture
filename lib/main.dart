@@ -1,12 +1,13 @@
 import 'package:bloc_clean_architecture/config/routes/route_name.dart';
 import 'package:bloc_clean_architecture/config/routes/routes.dart';
 import 'package:bloc_clean_architecture/respository/auth/login_http_api.dart';
-
+import 'package:bloc_clean_architecture/respository/movie/movie_http_api.dart';
 import 'package:flutter/material.dart';
 import 'package:get_it/get_it.dart';
 
 GetIt getIt = GetIt.instance;
 final getItt = getIt<LoginHttpRepository>();
+final getItt1 = getIt<MovieHttpApi>();
 void main() {
   WidgetsFlutterBinding.ensureInitialized();
   serviceLocator();
@@ -34,4 +35,5 @@ class MyApp extends StatelessWidget {
 void serviceLocator() {
   // Registering loginApiRepository as a lazy singleton for AuthApiRepository
   getIt.registerLazySingleton<LoginHttpRepository>(() => LoginHttpRepository());
+  getIt.registerLazySingleton<MovieHttpApi>(() => MovieHttpApi());
 }
